@@ -10,9 +10,9 @@
 
 
   $Shopify = new Shopify();
-  $shop_url = "rebuilt-meals-llc.myshopify.com"; //Tools::getShopUrl()
-  $access_token = "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"; 
-  define('API_SECRET_KEY', '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');
+  // $shop_url = "rebuilt-meals-llc.myshopify.com"; //Tools::getShopUrl()
+  // $access_token = "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"; 
+  // define('API_SECRET_KEY', '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');
   
   // function verify_webhook($data, $hmac_header)
   // {
