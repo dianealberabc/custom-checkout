@@ -184,8 +184,6 @@ class Shopify{
     }
     public function storeCountries($shop, $access_token) { 
        
-        // $country_res = array();
-        // for($i = 0 ; $i < count($countries_id); $i++){
            $curl_url = "https://$shop/admin/api/2022-04/shipping_zones.json";
            // return $curl_url;
                $ch = curl_init();
@@ -200,9 +198,7 @@ class Shopify{
                $finalCountryCode = json_decode($response);
                 // $country_res[] = $finalCountryCode->country->code;
                 return $finalCountryCode; 
-    //    }
-      
-           
+       
     }
 }
 
