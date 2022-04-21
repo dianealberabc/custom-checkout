@@ -182,5 +182,27 @@ class Shopify{
             return false;
         }
     }
+    public function storeCountries($shop, $access_token) { 
+       
+        // $country_res = array();
+        for($i = 0 ; $i < count($countries_id); $i++){
+           $curl_url = "https://$shop/admin/api/2022-01/countries.json";
+           // return $curl_url;
+               $ch = curl_init();
+               curl_setopt($ch, CURLOPT_URL, $curl_url);
+               curl_setopt($ch, CURLOPT_HEADER, false);
+               curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+               curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+               curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+               // execute curl
+               $response = curl_exec($ch);
+                curl_close($ch);
+               $finalCountryCode = json_decode($response);
+                // $country_res[] = $finalCountryCode->country->code;
+                return $finalCountryCode; 
+       }
+      
+           
+    }
 }
 
