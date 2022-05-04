@@ -215,5 +215,51 @@ class Shopify{
          // $country_res[] = $finalCountryCode->country->code;
          return $shippingDataAll;
     }
+
+    // discount code apply--------------------------------------------------------------------->>>>>>>>>>>>>>>>>>
+    public function checkDiscountNo($shop, $access_token, $asset_data) { 
+        $curl_url = "https://$shop/admin/api/2022-01/discount_codes/lookup.json?code=$asset_data";
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $curl_url);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json", "X-Shopify-Access-Token:$access_token"));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);      
+            curl_setopt($ch, CURLOPT_NOBODY, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // follow redirects
+            curl_setopt($ch, CURLOPT_AUTOREFERER, 1); 
+
+            // execute curl
+                $response = curl_exec($ch);
+                $target = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+                curl_close($ch);
+                $ch2 = curl_init();
+                curl_setopt($ch2, CURLOPT_URL, $target);
+                curl_setopt($ch2, CURLOPT_HEADER, false);
+                curl_setopt($ch2, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+                curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+                $response2 = json_decode(curl_exec($ch2));
+                curl_close($ch);
+                return $response2;
+     }
+
+     public function ruleSetDiscountNo($shop, $access_token, $asset_data) { 
+        $curl_url = "https://$shop/admin/api/2022-01/price_rules/$asset_data.json";
+        // return $curl_url;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $curl_url);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            // execute curl
+            $response = curl_exec($ch);
+             curl_close($ch);
+            return  json_decode($response);
+            
+     }
+
 }
 
