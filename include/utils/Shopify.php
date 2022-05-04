@@ -201,6 +201,7 @@ class Shopify{
        
     }
     public function shippingMethod($shop, $access_token){
+        $curl_url = "https://$shop/admin/api/2022-04/carrier_services.json";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $curl_url);
         curl_setopt($ch, CURLOPT_HEADER, false);
