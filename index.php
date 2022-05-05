@@ -16,9 +16,9 @@
   $created_assets = $Shopify->checkDiscountNo("diane-alber.myshopify.com","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", $discount_input);
  
   if(isset($created_assets->errors)){
-    echo $created_assets;
+    echo json_encode($created_assets);
   } else{
  $rule_set_result = $Shopify->ruleSetDiscountNo("diane-alber.myshopify.com","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", $created_assets->discount_code->price_rule_id);
- echo json_encode($created_assets); 
+ echo json_encode($rule_set_result); 
   }   
 ?>
