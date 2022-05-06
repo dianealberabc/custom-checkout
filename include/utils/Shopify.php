@@ -260,6 +260,27 @@ class Shopify{
             return  json_decode($response);
             
      }
+     public function savedSearchIds($shop, $access_token, $saved_search_ids) { 
+        $saved_search_ids_res = array();
+        for($i = 0 ; $i < count($saved_search_ids); $i++){
+           $curl_url = "https://$shop/admin/api/2021-10/customer_saved_searches/$saved_search_ids[$i].json";
+           // return $curl_url;
+               $ch = curl_init();
+               curl_setopt($ch, CURLOPT_URL, $curl_url);
+               curl_setopt($ch, CURLOPT_HEADER, false);
+               curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+               curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+               curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+               // execute curl
+               $response = curl_exec($ch);
+                curl_close($ch);
+               
+                $saved_search_ids_res[] = json_decode($response);
+             
+       }
+       return $saved_search_ids_res;
+           
+    }
 
 }
 
