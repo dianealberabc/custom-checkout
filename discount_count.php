@@ -13,7 +13,8 @@
   $str_json = file_get_contents('php://input');
   $discount_data = json_decode($str_json);
   $discount_input = $discount_data->discount_code;
-  $created_assets = $Shopify->checkDiscountNo_count("diane-alber.myshopify.com","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", $discount_input);
+  $price_rule_id = $discount_data->price_rule_id;
+  $created_assets = $Shopify->checkDiscountNo_count("diane-alber.myshopify.com","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", $discount_input,$price_rule_id);
   echo json_encode($created_assets);
     
 ?>
