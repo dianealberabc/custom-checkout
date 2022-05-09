@@ -306,7 +306,7 @@ class Shopify{
     }
 
     public function checkDiscountNo_count($shop,$access_token,$discount_code){
-        $curl_url = "https://$shop/admin/api/2021-10/$discount_code/count.json";
+        $curl_url = "https://$shop/admin/api/2021-10/discount_codes/count.json";
         // return $curl_url;
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $curl_url);
