@@ -3,7 +3,7 @@
     header('Access-Control-Allow-Origin: *');
     header('Access-Control-Allow-Methods: GET, POST, PUT');
     header('content-type: application/json; charset=utf-8');
-    require 'include/db/Store.php';
+    // require 'include/db/Store.php';
     include 'include/utils/Shopify.php';
     include 'include/utils/Tools.php';
 
