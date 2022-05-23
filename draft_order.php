@@ -11,6 +11,6 @@
   $str_json = file_get_contents('php://input');
   $draft_order_data = json_decode($str_json);
 //   $draft_order_data = $discount_data->draft_order_data;
-  $order_draft = $Shopify->draftOrderFun("diane-alber.myshopify.com","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", $draft_order_data);
-  
+//   $order_draft = $Shopify->draftOrderFun("diane-alber.myshopify.com","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", $draft_order_data);
+  echo json_encode($draft_order_data);
 ?>
