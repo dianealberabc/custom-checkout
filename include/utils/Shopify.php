@@ -344,7 +344,7 @@ class Shopify{
     public function productData($shop, $access_token, $pro_data) { 
         $pro_res = array();
         for($i = 0 ; $i < count($pro_data); $i++){
-           $curl_url = "https://$shop/admin/products/$pro_data[$i].json";
+           $curl_url = "https://$shop/admin/api/2021-10/products/$pro_data[$i].json";
            // return $curl_url;
                $ch = curl_init();
                curl_setopt($ch, CURLOPT_URL, $curl_url);
@@ -363,6 +363,23 @@ class Shopify{
        return $pro_res;
    
            
+    }
+
+    public function draftOrderFun($shop, $access_token, $draft_order_data){
+        $curl_url = "https://$shop/admin/api/2022-04/draft_orders.json";
+        // return $curl_url;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $curl_url);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS ,$draft_order_data);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            // execute curl
+            $response = curl_exec($ch);
+             curl_close($ch);
+            return  json_decode($response);
     }
 
 }
