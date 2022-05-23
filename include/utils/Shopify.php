@@ -381,7 +381,7 @@ class Shopify{
             $draft_data_res =  json_decode($response);
             $draft_order_id = $draft_data_res->draft_order->id;
             $draft_order_email = $draft_data_res->draft_order->email;
-           if($draft_data_res->draft_order->email){
+           if($draft_order_email){
             $item_arr = [
                 "to" => "$draft_order_email",
                 "from" => "support@dianealber.com",
