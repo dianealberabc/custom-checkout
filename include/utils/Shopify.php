@@ -379,7 +379,8 @@ class Shopify{
             // execute curl
             $response = curl_exec($ch);
              curl_close($ch);
-            return  json_decode($response);
+            $draft_data_res =  json_decode($response);
+            return $draft_data_res->draft_order->id;
     }
 
 }
