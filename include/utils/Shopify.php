@@ -381,29 +381,30 @@ class Shopify{
             $draft_data_res =  json_decode($response);
             $draft_order_id = $draft_data_res->draft_order->id;
             $draft_order_email = $draft_data_res->draft_order->email;
-            return $draft_data_res;
-            // $item_arr = [
-            //     "to" => "$draft_order_email",
-            //     "from" => "support@dianealber.com",
-            //     "subject" => "Invoice",
-            //     "custom_message" => "Thank you for New Order"
-            // ];
-            // $data_invoice = [
-            //     "draft_order_invoice" => $item_arr
-            // ];  
-            // $curl_url_for_invoice = "https://$shop/admin/draft_orders/$draft_order_id/send_invoice.json";
-            //     $ch2 = curl_init();
-            //     curl_setopt($ch2, CURLOPT_URL, $curl_url);
-            //     curl_setopt($ch2, CURLOPT_HEADER, false);
-            //     curl_setopt($ch2, CURLOPT_POST, 1);
-            //     curl_setopt($ch2, CURLOPT_POSTFIELDS ,json_encode($data_invoice));
-            //     curl_setopt($ch2, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
-            //     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
-            //     curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
-            //     // execute curl
-            //     $response = curl_exec($ch2);
-            //      curl_close($ch2);
-            //     return json_decode($response);
+           if($draft_data_res->draft_order->email){
+            $item_arr = [
+                "to" => "$draft_order_email",
+                "from" => "support@dianealber.com",
+                "subject" => "Invoice",
+                "custom_message" => "Thank you for New Order"
+            ];
+            $data_invoice = [
+                "draft_order_invoice" => $item_arr
+            ];  
+            $curl_url_for_invoice = "https://$shop/admin/draft_orders/$draft_order_id/send_invoice.json";
+                $ch2 = curl_init();
+                curl_setopt($ch2, CURLOPT_URL, $curl_url);
+                curl_setopt($ch2, CURLOPT_HEADER, false);
+                curl_setopt($ch2, CURLOPT_POST, 1);
+                curl_setopt($ch2, CURLOPT_POSTFIELDS ,json_encode($data_invoice));
+                curl_setopt($ch2, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+                curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+                // execute curl
+                $response = curl_exec($ch2);
+                 curl_close($ch2);
+                return json_decode($response);
+            }
     }
 
 }
