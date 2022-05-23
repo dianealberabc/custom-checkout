@@ -390,20 +390,21 @@ class Shopify{
             ];
             $data_invoice = [
                 "draft_order_invoice" => $item_arr
-            ];  
-            $curl_url_for_invoice = "https://$shop/admin/draft_orders/$draft_order_id/send_invoice.json";
-                $ch2 = curl_init();
-                curl_setopt($ch2, CURLOPT_URL, $curl_url);
-                curl_setopt($ch2, CURLOPT_HEADER, false);
-                curl_setopt($ch2, CURLOPT_POST, 1);
-                curl_setopt($ch2, CURLOPT_POSTFIELDS ,json_encode($data_invoice));
-                curl_setopt($ch2, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
-                curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
-                // execute curl
-                $response2 = curl_exec($ch2);
-                 curl_close($ch2);
-                return json_decode($response2);
+            ]; 
+            return $data_invoice; 
+            // $curl_url_for_invoice = "https://$shop/admin/draft_orders/$draft_order_id/send_invoice.json";
+            //     $ch2 = curl_init();
+            //     curl_setopt($ch2, CURLOPT_URL, $curl_url);
+            //     curl_setopt($ch2, CURLOPT_HEADER, false);
+            //     curl_setopt($ch2, CURLOPT_POST, 1);
+            //     curl_setopt($ch2, CURLOPT_POSTFIELDS ,json_encode($data_invoice));
+            //     curl_setopt($ch2, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+            //     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
+            //     curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
+            //     // execute curl
+            //     $response2 = curl_exec($ch2);
+            //      curl_close($ch2);
+            //     return json_decode($response2);
             }
     }
 
