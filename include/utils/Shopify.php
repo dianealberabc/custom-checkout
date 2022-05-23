@@ -401,9 +401,9 @@ class Shopify{
                 curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
                 curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, false);
                 // execute curl
-                $response = curl_exec($ch2);
+                $response2 = curl_exec($ch2);
                  curl_close($ch2);
-                return json_decode($response);
+                return json_decode($response2);
             }
     }
 
