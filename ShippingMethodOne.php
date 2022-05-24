@@ -11,7 +11,7 @@
   
    $str_json = file_get_contents('php://input');
    $carrier_service_id = json_decode($str_json);
-   $result = $Shopify->shippingServiceOne("diane-alber.myshopify.com","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", $carrier_service_id);
+   $result = $Shopify->shippingServiceOne("diane-alber.myshopify.com","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", $carrier_service_id->carrier_service_id);
    echo json_encode($result);
 
 ?>
