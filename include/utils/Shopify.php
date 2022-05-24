@@ -407,5 +407,19 @@ class Shopify{
             }
     }
 
+    public function shippingServiceOne($shop, $access_token, $carrier_service_id){
+        $curl_url = "https://$shop/admin/api/2021-10/carrier_services/$carrier_service_id.json";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $curl_url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json","X-Shopify-Access-Token:$access_token"));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        // execute curl
+        $response = curl_exec($ch);
+         curl_close($ch);
+        return json_decode($response);
+    }
+
 }
 
