@@ -422,5 +422,23 @@ class Shopify{
         return json_decode($response);
     }
 
+    public function createAssetImage($shop, $access_token, $asset_data) { 
+        $curl_url = "https://$shop/admin/api/2022-01/themes/129917845695/assets.json";
+         // set curl options
+         $ch = curl_init();
+         curl_setopt($ch, CURLOPT_URL, $curl_url);
+         curl_setopt($ch, CURLOPT_HEADER, false);
+         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+         curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:application/json", "X-Shopify-Access-Token:$access_token"));
+         curl_setopt($ch, CURLOPT_POSTFIELDS ,$asset_data);
+         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+         // execute curl
+         $response = json_decode(curl_exec($ch));
+         // close curl
+         curl_close($ch);         
+         return $response;
+     }
+
 }
 
