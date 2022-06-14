@@ -6,16 +6,11 @@
   include 'include/utils/Shopify.php';
   include 'include/utils/Tools.php';
 
+
   $Shopify = new Shopify();
   $str_json = file_get_contents('php://input');
   $draft_order_data = json_decode($str_json);
-  $snippet_data = json_encode(array('asset' => array(
-    'key' => 'assets/'.$draft_order_data->data_Pdf->imageName,
-    'attachment' => $draft_order_data->data_Pdf->base64
-  ))); 
-
-  $img_data = $Shopify->createAssetImage("diane-alber.myshopify.com","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", $snippet_data);
 //   $draft_order_data = $discount_data->draft_order_data;
-  // $order_draft = $Shopify->draftOrderFun("diane-alber.myshopify.com","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", $draft_order_data);
-  echo json_encode($img_data);
+  $order_draft = $Shopify->draftOrderFun("diane-alber.myshopify.com","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", $draft_order_data);
+  echo json_encode($order_draft);
 ?>
